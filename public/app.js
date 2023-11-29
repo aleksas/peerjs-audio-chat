@@ -28,7 +28,17 @@ function init() {
 // Connect to PeerJS and get an ID
 function connectToPeerJS(cb) {
   display('Connecting to PeerJS...');
-  me = new Peer({key: API_KEY});
+  // me = new Peer({key: API_KEY});
+
+  // me = new Peer({key: API_KEY});
+  me = new Peer(null, {
+    // key: API_KEY,
+    host: '127.0.0.1',
+    port: 9000,
+    path: '/myapp',
+    secure: false, // set to true if your server uses https
+    // other options...
+  });
 
   me.on('call', handleIncomingCall);
   
@@ -97,7 +107,7 @@ function addIncomingStream(peer, stream) {
 // Create an <audio> element to play the audio stream
 function playStream(stream) {
   var audio = $('<audio autoplay />').appendTo('body');
-  audio[0].src = (URL || webkitURL || mozURL).createObjectURL(stream);
+  audio[0].srcObject = stream;
 }
 
 // Get access to the microphone
