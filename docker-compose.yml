@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  webcall:
+    build: .
+    ports:
+      - "6767:6767"
+
+  peerjs-server:
+    image: peerjs/peerjs-server:latest
+    ports:
+      - "9000:9000"
+    command: ["peerjs", "--path", "/myapp", "--port", "9000"]
