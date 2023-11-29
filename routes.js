@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var config = require('./config');
+// var config = require('./config');
 var Call = require('./call');
 
 // Create a new Call instance, and redirect
@@ -39,7 +39,7 @@ router.get('/:id', function(req, res) {
   if (!call) return res.redirect('/new');
 
   res.render('call', {
-    apiKey: config.peerjs.key,
+    // apiKey: config.peerjs.key,
     call: call.toJSON()
   });
 });
